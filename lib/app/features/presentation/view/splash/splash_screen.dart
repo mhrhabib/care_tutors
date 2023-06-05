@@ -1,4 +1,6 @@
+import 'package:care_tutors/app/general/router/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,11 +18,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateTo() async {
-      Box box = Hive.box('introShow');
-
+    Box box = Hive.box<bool>('introShow');
 
     await Future.delayed(const Duration(seconds: 2)).then((_) {
-     
+      box.get("intro") == true
+          ? context.go(AppRoutes.home)
+          : context.go(AppRoutes.intro);
     });
   }
 
