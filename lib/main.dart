@@ -10,6 +10,7 @@ import 'app/features/data/local/model/todo.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(TodoAdapter());
   await Hive.openBox<bool>('introShow');
   await Hive.openBox<Todo>(HiveBoxes.todos);
   runApp(

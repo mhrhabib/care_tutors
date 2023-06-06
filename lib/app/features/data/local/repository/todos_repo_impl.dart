@@ -30,8 +30,9 @@ class TodosRepoImpl extends TodosRepository{
 
 
   @override
-  Future<void> deleteTodo(int i) async{
-    return files.delete(i);
+  Future<void> deleteTodo(String id) async{
+    var x = todosBox.values.firstWhere((element) => element.id == id);
+    x.delete();
   }
 
   @override
@@ -49,27 +50,29 @@ class TodosRepoImpl extends TodosRepository{
     
     final todos = await loadTodos();
 
+    //finding the index 
+    final index = todos.indexWhere((element) => element.id ==todo.id);
+
     //edit the todo if exists
     final existing = todos.firstWhereOrNull((t) => t.id == todo.id);
 
     if(existing != null){
       final newTodo = Todo(
+        id: todo.id,
         title:  todo.title,
         description: todo.description,
-        conpleted: todo.conpleted
+        completed: todo.completed
       );
 
-      final newTodos = todos.map((e) {
-        return e.id == todo.id ? newTodo : e;
-      }).toList();
+     
 
-      await files.write(newTodos);
+      await todosBox.putAt(index, newTodo);
       return;
     }else{
       //add the todo if it doesn't exist
 
-     final newTodos = [...todos, todo];
-      return files.write(newTodos);
+    
+      return files.write(todo);
     }
 
   }

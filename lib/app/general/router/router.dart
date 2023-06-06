@@ -4,6 +4,8 @@ import 'package:care_tutors/app/features/presentation/view/splash/splash_screen.
 import 'package:care_tutors/app/general/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/presentation/view/home/todos_edit.dart';
+
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -17,6 +19,16 @@ final router = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          path: 'new',
+          builder: (context, state) => const TodosEdit(),
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (context, state) => TodosEdit(todoId: state.pathParameters['id']),
+        ),
+      ],
     ),
   ],
 );

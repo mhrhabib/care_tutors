@@ -20,7 +20,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
       id: fields[0] as String?,
       title: fields[1] as String?,
       description: fields[2] as String?,
-      conpleted: fields[3] as bool?,
+      completed: fields[3] as bool?,
     );
   }
 
@@ -35,7 +35,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.conpleted);
+      ..write(obj.completed);
   }
 
   @override

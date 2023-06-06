@@ -17,7 +17,7 @@ class Todo extends HiveObject {
     String? description;
 
     @HiveField(3)
-    bool? conpleted = false;
+    bool? completed = false;
 
-    Todo({ this.id,  this.title,  this.description, this.conpleted,});
+    Todo({ this.id,  this.title,  this.description, this.completed,});
 }

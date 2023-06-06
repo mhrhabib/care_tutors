@@ -10,8 +10,8 @@ class HiveFilesImpl extends HiveFiles{
   Box<Todo> todoListBox = Hive.box(HiveBoxes.todos);
 
   @override
-  Future<void> delete(int index) async{
-    var todo = todoListBox.getAt(index);
+  Future<void> delete(int id) async{
+    var todo = todoListBox.getAt(id);
     todo!.delete();
     
   }
@@ -22,8 +22,8 @@ class HiveFilesImpl extends HiveFiles{
   }
 
   @override
-  Future<void> write(List<Todo> todos) async {
-    todoListBox.addAll(todos);
+  Future<void> write(Todo todos) async {
+    todoListBox.add(todos);
   }
 
 
