@@ -28,8 +28,8 @@ class TodoTile extends ConsumerWidget {
         value: todo.completed,
         onChanged: (value) {
           if (value != null) {
-            final newTodo = Todo(completed: value);
-            ref.read(todosListState.notifier).save(newTodo);
+            // final newTodo = Todo(completed: value);
+            // ref.read(todosListState.notifier).save(newTodo);
           }
         },
       ),
